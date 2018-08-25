@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Raleway', sans-serif;
+}
+
+.main-content {
+  max-width: 1024px;
+  margin: auto;
+
+  @media screen and (max-width: 1084px) {
+    margin: auto 30px;
+  }
+}

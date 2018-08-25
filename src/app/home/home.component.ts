@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { RhymeService } from './rhyme.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  providers: [RhymeService]
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
-  constructor() { }
+  constructor(
+    private rhymeService: RhymeService
+  ) { }
 
-  ngOnInit() {
+  public getRyhme() {
+    return this.rhymeService.getRhyme();
   }
 
 }

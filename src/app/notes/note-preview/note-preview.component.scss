@@ -1,0 +1,23 @@
+.note-preview {
+  background-color: #CDCDCD;
+  border-radius: 5px;
+  border: 1px solid #214E34;
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  box-shadow: 1px 1px 2px #CDCDCD;
+
+  h1.date {
+    color: #011638;
+    margin-right: 30px;
+  }
+
+  p.preview {
+    color: #364156;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}
