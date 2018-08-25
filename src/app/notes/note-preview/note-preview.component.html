@@ -1,6 +1,9 @@
 <mat-card>
   <mat-card-title>
-    {{ date }}
+    <div class="header">
+      <span>{{ date }}</span>
+      <a mat-stroked-button [routerLink]="['/notes', id]">View</a>
+    </div>
   </mat-card-title>
   <mat-card-subtitle>
     {{ preview }}
