@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { ApiService } from '../../api.service';
 import { AuthService } from '../../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth-dialog',
@@ -34,6 +35,8 @@ export class AuthDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<AuthDialogComponent>,
     private apiService: ApiService,
     private authService: AuthService,
+    private router: Router,
+    private snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
@@ -49,16 +52,18 @@ export class AuthDialogComponent implements OnInit {
     this.apiService.login(this.loginFormGroup.value.email, this.loginFormGroup.value.password)
       .subscribe(({ token }) => {
         this.authService.setLoggedIn(token);
+        this.router.navigate(['/notes']);
+        this.dialogRef.close();
       }, () => {
-        console.log('err');
-        this.loginFormGroup.setErrors({
-          loginFailed: true
+        this.snackBar.open('Invalid email/password combination', null, {
+          duration: 2000,
+          horizontalPosition: 'center'
         });
       });
   }
 
   public signup() {
-    const { name, email, password, phoneNumber } = this.loginFormGroup.value;
+    const { name, email, password, phoneNumber } = this.signupFormGroup.value;
     this.apiService.signup(name, email, password, phoneNumber)
       .subscribe();
   }

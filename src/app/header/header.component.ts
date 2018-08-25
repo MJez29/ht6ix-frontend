@@ -1,7 +1,8 @@
 import { Component, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { AuthDialogComponent } from './auth-dialog/auth-dialog.component';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-header',
@@ -12,12 +13,15 @@ export class HeaderComponent implements OnDestroy {
 
   public mobileQuery: MediaQueryList;
 
+  public sideNavOpen: boolean;
+
   private mobileQueryListener: () => void;
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
     private media: MediaMatcher,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private authService: AuthService,
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this.mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -34,7 +38,14 @@ export class HeaderComponent implements OnDestroy {
         view
       }
     });
+    this.closeSideNav();
+  }
 
-    dialogRef.afterClosed().subscribe(console.log);
+  public closeSideNav() {
+    this.sideNavOpen = false;
+  }
+
+  public isLoggedIn() {
+    return this.authService.isLoggedIn();
   }
 }

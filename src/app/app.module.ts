@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
-  MatCardModule, MatButtonModule, MatSidenavModule, MatToolbarModule, MatIconModule, MatListModule, MatTabsModule, MatDialog, MatDialogModule, MatFormFieldModule, MatInputModule
+  MatCardModule, MatButtonModule, MatSidenavModule, MatToolbarModule, MatIconModule, MatListModule, MatTabsModule, MatDialog, MatDialogModule, MatFormFieldModule, MatInputModule, MatSnackBarModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -42,7 +42,8 @@ import { ApiInterceptor } from './api.interceptor';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatInputModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule
   ],
   entryComponents: [
     AuthDialogComponent

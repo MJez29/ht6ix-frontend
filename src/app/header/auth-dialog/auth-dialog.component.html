@@ -9,8 +9,7 @@
         <input matInput placeholder="Enter your password" [formControl]="loginFormGroup.get('password')" required type="password">
         <mat-error *ngIf="loginFormGroup.get('password').invalid">Please enter your password</mat-error>
       </mat-form-field>
-      <button mat-button type="submit" [disabled]="loginFormGroup.invalid">Log In</button>
-      <mat-error *ngIf="loginFormGroup.getError('loginFailure')">Invalid email/password combination</mat-error>
+      <button mat-raised-button color="accent" type="submit" [disabled]="loginFormGroup.invalid">Log In</button>
     </form>
   </mat-tab>
   <mat-tab label="Sign Up">
@@ -35,7 +34,7 @@
         <input matInput placeholder="Repeat your password" [formControl]="signupFormGroup.get('passwordConfirm')" required type="password">
         <mat-error *ngIf="signupFormGroup.get('passwordConfirm').invalid">Your password must be at least 8 characters</mat-error>
       </mat-form-field>
-      <button mat-button type="submit" [disabled]="signupFormGroup.invalid">Sign Up</button>
+      <button mat-raised-button color="accent" type="submit" [disabled]="signupFormGroup.invalid">Sign Up</button>
       <mat-error *ngIf="signupFormGroup.getError('mismatch')">Your passwords must match</mat-error>
     </form>
   </mat-tab>

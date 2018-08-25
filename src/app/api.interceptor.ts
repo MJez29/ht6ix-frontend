@@ -25,7 +25,7 @@ export class ApiInterceptor implements HttpInterceptor {
             if (err instanceof HttpErrorResponse && err.status === 403) {
               this.router.navigate(['/']);
             } else {
-              return of(err);
+              return Observable.throw(err);
             }
           }
         )
