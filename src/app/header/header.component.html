@@ -1,0 +1,22 @@
+<div class="header" [class.example-is-mobile]="mobileQuery.matches">
+  <mat-toolbar color="primary" class="example-toolbar">
+    <h1 class="title">A note a day</h1>
+    <div class="filler"></div>
+    <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+  </mat-toolbar>
+
+  <mat-sidenav-container>
+    <mat-sidenav #snav mode="over" position="end"
+                  [fixedInViewport]="true" fixedTopGap="56">
+      <mat-nav-list class="not-authenticated">
+        <button mat-button (click)="openAuthDialog('login')">Log in</button>
+        <button mat-button (click)="openAuthDialog('signup')">Sign up</button>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <ng-content></ng-content>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  </div>
+  

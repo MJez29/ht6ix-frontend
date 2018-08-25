@@ -7,12 +7,15 @@
   overflow: hidden;
 
   .banner {
-    text-align: center;
-    padding: 30px;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    max-width: calc(100vw - 60px);
+    width: 300px;
 
-    h1 {
-      font-size: 48px;
-      color: #DFF8EB;
+    img {
+      width: 100%;
+      height: auto;
     }
   }
 

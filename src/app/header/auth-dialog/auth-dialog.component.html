@@ -1,0 +1,42 @@
+<mat-tab-group [selectedIndex]="data.view === 'signup' ? 1 : 0">
+  <mat-tab label="Log In">
+    <form [formGroup]="loginFormGroup" (ngSubmit)="login()">
+      <mat-form-field color="accent">
+        <input matInput placeholder="Enter your email" [formControl]="loginFormGroup.get('email')" required>
+        <mat-error *ngIf="loginFormGroup.get('email').invalid">Please enter a valid email address</mat-error>
+      </mat-form-field>
+      <mat-form-field color="accent">
+        <input matInput placeholder="Enter your password" [formControl]="loginFormGroup.get('password')" required type="password">
+        <mat-error *ngIf="loginFormGroup.get('password').invalid">Please enter your password</mat-error>
+      </mat-form-field>
+      <button mat-button type="submit" [disabled]="loginFormGroup.invalid">Log In</button>
+      <mat-error *ngIf="loginFormGroup.getError('loginFailure')">Invalid email/password combination</mat-error>
+    </form>
+  </mat-tab>
+  <mat-tab label="Sign Up">
+    <form [formGroup]="signupFormGroup" (ngSubmit)="signup()">
+      <mat-form-field color="accent">
+        <input matInput placeholder="Enter your name" [formControl]="signupFormGroup.get('name')" required>
+        <mat-error *ngIf="signupFormGroup.get('name').invalid">Please enter a your name</mat-error>
+      </mat-form-field>
+      <mat-form-field color="accent">
+        <input matInput placeholder="Enter your email" [formControl]="signupFormGroup.get('email')" required>
+        <mat-error *ngIf="signupFormGroup.get('email').invalid">Please enter a valid email address</mat-error>
+      </mat-form-field>
+      <mat-form-field color="accent">
+        <input matInput placeholder="Enter your phone number" [formControl]="signupFormGroup.get('phoneNumber')" required>
+        <mat-error *ngIf="signupFormGroup.get('phoneNumber').invalid">Please enter a valid phone number</mat-error>
+      </mat-form-field>
+      <mat-form-field color="accent">
+        <input matInput placeholder="Enter your password" [formControl]="signupFormGroup.get('password')" required type="password">
+        <mat-error *ngIf="signupFormGroup.get('password').invalid">Your password must be at least 8 characters</mat-error>
+      </mat-form-field>
+      <mat-form-field color="accent">
+        <input matInput placeholder="Repeat your password" [formControl]="signupFormGroup.get('passwordConfirm')" required type="password">
+        <mat-error *ngIf="signupFormGroup.get('passwordConfirm').invalid">Your password must be at least 8 characters</mat-error>
+      </mat-form-field>
+      <button mat-button type="submit" [disabled]="signupFormGroup.invalid">Sign Up</button>
+      <mat-error *ngIf="signupFormGroup.getError('mismatch')">Your passwords must match</mat-error>
+    </form>
+  </mat-tab>
+</mat-tab-group>
