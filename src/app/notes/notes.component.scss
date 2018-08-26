@@ -1,0 +1,17 @@
+.no-data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin-top: 30vh;
+
+  .no-data-box {
+    padding: 30px;
+    border: 2px dashed #777777;
+    text-align: center;
+
+    a {
+      margin-top: 15px;
+    }
+  }
+}

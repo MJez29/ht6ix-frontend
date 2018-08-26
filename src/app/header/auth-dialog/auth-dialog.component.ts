@@ -65,6 +65,20 @@ export class AuthDialogComponent implements OnInit {
   public signup() {
     const { name, email, password, phoneNumber } = this.signupFormGroup.value;
     this.apiService.signup(name, email, password, phoneNumber)
-      .subscribe();
+      .subscribe(({ token }) => {
+        this.authService.setLoggedIn(token);
+        this.router.navigate(['/notes']);
+        this.dialogRef.close();
+        this.snackBar.open('Account created successfully', null, {
+          duration: 2000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top'
+        });
+      }, () => {
+        this.snackBar.open('An unknown error occured', null, {
+          duration: 2000,
+          horizontalPosition: 'center'
+        });
+      });
   }
 }

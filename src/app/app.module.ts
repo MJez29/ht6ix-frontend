@@ -16,6 +16,7 @@ import { AuthDialogComponent } from './header/auth-dialog/auth-dialog.component'
 import { ReactiveFormsModule, ControlContainer } from '@angular/forms';
 import { HttpClient, HttpHandler, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiInterceptor } from './api.interceptor';
+import { NotesResolver } from './notes/notes.resolver';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { ApiInterceptor } from './api.interceptor';
       provide: HTTP_INTERCEPTORS,
       useClass: ApiInterceptor,
       multi: true
-    }
+    },
+    NotesResolver
   ],
   bootstrap: [AppComponent]
 })

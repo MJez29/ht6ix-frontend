@@ -7,10 +7,17 @@
 
   <mat-sidenav-container>
     <mat-sidenav #snav mode="over" position="end" [(opened)]="sideNavOpen"
-                  [fixedInViewport]="true" fixedTopGap="56">
+                  [fixedInViewport]="true" fixedTopGap="64">
       <mat-nav-list class="not-authenticated" *ngIf="!isLoggedIn()">
         <button mat-button (click)="openAuthDialog('login')">Log in</button>
         <button mat-button (click)="openAuthDialog('signup')">Sign up</button>
+      </mat-nav-list>
+      <mat-nav-list class="authenticated" *ngIf="isLoggedIn()" role="list">
+        <mat-icon>person_outline</mat-icon>
+        <mat-list-item role="listitem" [disableRipple]="true">Michal Jez</mat-list-item>
+        <mat-divider color="primary"></mat-divider>
+        <a mat-button [routerLink]="['/notes']">My Notes</a>
+        <button mat-button (click)="logout()">Log Out</button>
       </mat-nav-list>
     </mat-sidenav>
 

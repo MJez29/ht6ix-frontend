@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-note-preview',
@@ -14,11 +15,21 @@ export class NotePreviewComponent implements OnInit {
   public preview: string;
 
   @Input()
-  public date: string;
+  public set date(d: string) {
+    this.formattedDate = moment(d).format('MMM Do, YYYY');
+  }
+
+  public formattedDate: string;
+
+  @Input()
+  public canEdit: string;
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  public getIcon() {
+    return this.canEdit ? 'create' : 'remove_red_eye';
+  }
 }

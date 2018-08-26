@@ -3,6 +3,7 @@ import { HomeComponent } from "./home/home.component";
 import { NotesComponent } from "./notes/notes.component";
 import { NoteComponent } from "./notes/note/note.component";
 import { AuthGuardService } from "./auth-guard.service";
+import { NotesResolver } from "./notes/notes.resolver";
 
 const routes: Routes = [
   {
@@ -11,6 +12,9 @@ const routes: Routes = [
   }, {
     path: 'notes',
     canActivate: [AuthGuardService],
+    resolve: {
+      notes: NotesResolver
+    },
     component: NotesComponent,
   }, {
     path: 'notes/:id',

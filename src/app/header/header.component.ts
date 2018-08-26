@@ -3,6 +3,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { AuthDialogComponent } from './auth-dialog/auth-dialog.component';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -22,6 +23,7 @@ export class HeaderComponent implements OnDestroy {
     private media: MediaMatcher,
     private dialog: MatDialog,
     private authService: AuthService,
+    private router: Router
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this.mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -47,5 +49,10 @@ export class HeaderComponent implements OnDestroy {
 
   public isLoggedIn() {
     return this.authService.isLoggedIn();
+  }
+
+  public logout() {
+    this.authService.setLoggedOut();
+    this.router.navigate(['/']);
   }
 }

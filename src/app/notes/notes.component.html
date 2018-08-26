@@ -1,6 +1,28 @@
 <div class="main-content">
-  <app-note-preview
-    date="August 8, 2018"
-    preview="Today I feel like shit"
-  ></app-note-preview>
+  <div>
+    <a mat-raised-button [routerLink]="['/notes', 'new']" color="primary">
+      <mat-icon>playlist_add</mat-icon> Add your note for today
+    </a>
+  </div>
+  <ng-container *ngIf="notes && notes.length > 0; else noData">
+    <app-note-preview
+      *ngFor="let note of notes"
+      [date]="note.date"
+      [preview]="note.body"
+      [canEdit]="note.canEdit"
+      [id]="note._id"
+    ></app-note-preview>
+  </ng-container>
+  <ng-template #noData>
+    <div class="no-data">
+      <div class="no-data-box">
+        <div>
+          <mat-card-title>You don&apos;t have any notes</mat-card-title>
+        </div>
+        <a mat-raised-button [routerLink]="['/notes', 'new']" color="primary">
+          <mat-icon>playlist_add</mat-icon> Create
+        </a>
+      </div>
+    </div>
+  </ng-template>
 </div>

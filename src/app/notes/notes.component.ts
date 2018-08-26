@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+import { Notes } from './notes';
 
 @Component({
   selector: 'app-notes',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotesComponent implements OnInit {
 
-  constructor() { }
+  public get notes(): Notes {
+    return this.activatedRoute.snapshot.data.notes;
+  }
+
+  constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+  }  
+
+  public canCreateNewNote() {
+    return this.notes.filter(note => note.canEdit).length === 0;
   }
 
 }

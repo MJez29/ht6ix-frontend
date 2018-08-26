@@ -1,9 +1,9 @@
 <mat-card>
   <mat-card-title>
     <div class="header">
-      <span>{{ date }}</span>
+      <span>{{ formattedDate }}</span>
       <a mat-icon-button [routerLink]="['/notes', id]">
-        <mat-icon>open_in_new</mat-icon>
+        <mat-icon>{{ getIcon() }}</mat-icon>
       </a>
     </div>
   </mat-card-title>
