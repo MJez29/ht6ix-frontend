@@ -25,7 +25,8 @@ const routes: Routes = [
       note: {
         canEdit: true,
         date: moment().toISOString(),
-        body: ''
+        body: '',
+        isNew: true
       }
     }
   }, {

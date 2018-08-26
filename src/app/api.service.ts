@@ -44,4 +44,16 @@ export class ApiService {
   public getNote(id: string) {
     return this.http.get<NoteResponse>(`/notes/${id}`);
   }
+
+  public createNote(body: string, date: string) {
+    return this.http.post<NoteResponse>('/notes', {
+      body, date
+    });
+  }
+
+  public updateNote(id: string, body: string) {
+    return this.http.put<NoteResponse>(`/notes/${id}`, {
+      body
+    });
+  }
 }

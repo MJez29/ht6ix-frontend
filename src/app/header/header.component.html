@@ -7,7 +7,7 @@
 
   <mat-sidenav-container>
     <mat-sidenav #snav mode="over" position="end" [(opened)]="sideNavOpen"
-                  [fixedInViewport]="true" fixedTopGap="64">
+                  [fixedInViewport]="true" fixedTopGap="56">
       <mat-nav-list class="not-authenticated" *ngIf="!isLoggedIn()">
         <button mat-button (click)="openAuthDialog('login')">Log in</button>
         <button mat-button (click)="openAuthDialog('signup')">Sign up</button>

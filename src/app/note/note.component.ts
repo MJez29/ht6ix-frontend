@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
+import { ApiService } from '../api.service';
+import { NoteResponse } from './note';
 
 @Component({
   selector: 'app-note',
@@ -22,8 +24,18 @@ export class NoteComponent implements OnInit {
     return this.activatedRoute.snapshot.data.note.canEdit;
   }
 
+  public get isNew() {
+    return this.activatedRoute.snapshot.data.note.isNew;
+  }
+
+  public get id() {
+    return this.activatedRoute.snapshot.data.note._id;
+  }
+
   constructor(
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private apiService: ApiService,
+    private router: Router
   ) {
     this.formGroup = new FormGroup({
       note: new FormControl({
@@ -37,6 +49,14 @@ export class NoteComponent implements OnInit {
   }
 
   public save() {
-
+    if (this.isNew) {
+      this.apiService.createNote(this.formGroup.get('note').value, moment().toISOString())
+        .subscribe(({ message: { _id: id } }: NoteResponse) => {
+          this.router.navigate(['/notes', id]);
+        });
+    } else {
+      this.apiService.updateNote(this.id, this.formGroup.get('note').value)
+        .subscribe();
+    }
   }
 }
