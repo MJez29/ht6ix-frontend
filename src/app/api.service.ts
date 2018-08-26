@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Notes } from './notes/notes';
+import { NoteResponse } from './note/note';
 
 interface LoginResponse {
   token: string;
@@ -38,5 +39,9 @@ export class ApiService {
 
   public getNotes() {
     return this.http.get<Notes>('/notes');
+  }
+
+  public getNote(id: string) {
+    return this.http.get<NoteResponse>(`/notes/${id}`);
   }
 }

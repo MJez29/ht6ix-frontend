@@ -1,0 +1,22 @@
+<div class="main-content">
+  <mat-card>
+    <mat-card-title>{{ date }}</mat-card-title>
+    <mat-card-subtitle>How are you feeling today?</mat-card-subtitle>
+    <mat-card-content>
+      <form [formGroup]="formGroup" (ngSubmit)="save()">
+        <mat-form-field>
+          <textarea
+            matInput
+            [formControl]="formGroup.get('note')"
+            matTextareaAutosize
+            placeholder="I feel..."
+          ></textarea>
+        </mat-form-field>
+        <button *ngIf="canEdit" mat-raised-button type="submit" color="accent">
+          <mat-icon>save</mat-icon>
+          Save
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

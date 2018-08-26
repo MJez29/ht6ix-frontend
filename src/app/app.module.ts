@@ -10,13 +10,14 @@ import { AppRoutingModule } from './/app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { NotesComponent } from './notes/notes.component';
 import { NotePreviewComponent } from './notes/note-preview/note-preview.component';
-import { NoteComponent } from './notes/note/note.component';
+import { NoteComponent } from './note/note.component';
 import { HeaderComponent } from './header/header.component';
 import { AuthDialogComponent } from './header/auth-dialog/auth-dialog.component';
 import { ReactiveFormsModule, ControlContainer } from '@angular/forms';
 import { HttpClient, HttpHandler, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiInterceptor } from './api.interceptor';
 import { NotesResolver } from './notes/notes.resolver';
+import { NoteResolver } from './note/note.resolver';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { NotesResolver } from './notes/notes.resolver';
       useClass: ApiInterceptor,
       multi: true
     },
-    NotesResolver
+    NotesResolver,
+    NoteResolver
   ],
   bootstrap: [AppComponent]
 })
